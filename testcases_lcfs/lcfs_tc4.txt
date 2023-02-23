@@ -1,0 +1,17 @@
+fork
+fork
+nice 5
+ps
+schedule
+ps
+nice -5
+ps 
+timer 22
+ps
+quit
+
+
+
+
+This one should do pid 1 the most in small increments because of the low timeslice, 3 the second most in medium increments,
+and then 2 the least in the largest timeslice increments.

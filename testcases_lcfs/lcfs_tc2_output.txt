@@ -1,0 +1,10 @@
+rjcloughley2001@shell 1> curr proc- nice:-20 weight:88761
+rjcloughley2001@shell 2> pid: 1 forked: 2
+rjcloughley2001@shell 3> LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+rjcloughley2001@shell 4> 
+pid: 1, parent: 0, state: RUNNING, weight: 88761, nice: -20, timeslice: 98.859498, vruntime: 197.718995
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 1.140502, vruntime: 10.000000
+rjcloughley2001@shell 5> 

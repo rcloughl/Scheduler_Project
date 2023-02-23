@@ -1,0 +1,11 @@
+fork
+timer 8
+ps
+quit
+./procprog
+fork
+fork
+fork
+nice 5
+ps
+quit

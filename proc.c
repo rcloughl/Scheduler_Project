@@ -20,7 +20,8 @@ void acquire(int *p) {
 int schedule_latency=100;
 int minimum_granularity=5;
 
-static const int weight_table[40] = {
+
+static const int weight_table[40] = {			// Linux weight table from notes 
 /* -20 */ 88761, 71755, 56483, 46273, 36291,
 /* -15 */ 29154, 23254, 18705, 14949, 11916,
 /* -10 */ 9548, 7620, 6100, 4904, 3906,
@@ -340,43 +341,50 @@ scheduler(void)
   release(&ptable.lock);
 }
 
-
+								// This function refreshes the timeslice calculations and saves
+								// the curr_proc. It then loops through and makes the next runnable
+								// process the smallest and checks for smaller vruntimes. Then, the 
+								// function does the calculations to change the vruntime. It then puts the 
+								// previously curr_proc in the ready queue and the smallest vruntime proc
+								// as the curr_proc to run.
 void
 lcfs_scheduler(void)
 {
 
   struct proc *p;
+  struct proc *original_proc=curr_proc;
   acquire(&ptable.lock);
+  struct proc *smallest;
+  int empty=0;
   timeslice_calc();
-  curr_proc->state = RUNNABLE; 
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if( p->state != RUNNABLE)
-      continue;
-
-    // Switch to chosen process.
-    curr_proc = p;
-  }
-  struct proc *smallest=curr_proc;
-
    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p == smallest || p->state != RUNNABLE)
+    if(p==original_proc ||  p->state != RUNNABLE){
       continue;
-
+    }
     // Switch to chosen process.
     curr_proc = p;
-    if (curr_proc->vruntime<smallest->vruntime){
+    if(empty==0){
+	    smallest=curr_proc;
+	    empty=1;
+    }
+    if(curr_proc->vruntime<smallest->vruntime){
 	    smallest=curr_proc;
    }
    }
+   original_proc->state=RUNNABLE;
    curr_proc=smallest;
    curr_proc->state=RUNNING;
    double weightdiv=weight_table[20]/curr_proc->weight; 
-   curr_proc->vruntime=curr_proc->vruntime+weightdiv+curr_proc->timeslice;
-
+   double curr_vruntime=weightdiv+curr_proc->timeslice;
+   if (curr_vruntime<5)
+	   curr_vruntime=minimum_granularity;
+   curr_proc->vruntime=curr_proc->vruntime+curr_vruntime;
   release(&ptable.lock);
 
 }
-
+								// This function calculates the timeslice by going through the 
+								// entire ptable of runnable procs, and curr_proc, to calculate
+								// the timeslice of each runnable proc
 void
 timeslice_calc(void){
 	struct proc *p;
@@ -397,7 +405,8 @@ timeslice_calc(void){
 	curr_proc=temp;
 	curr_proc->state=RUNNING;
 }
-
+								// This function adds all of the runnable, and curr_proc, weights to
+								// one total and returns it
 double
 calc_weight_total(void){
 
@@ -412,6 +421,7 @@ calc_weight_total(void){
 
 
 
+								// Not used in this iteration of the project
 
 void
 mlfq_scheduler(void)
@@ -446,11 +456,14 @@ procdump(void)
 {
   struct proc *p;
   timeslice_calc();
+  printf("\n");
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->pid > 0)
       printf("pid: %d, parent: %d, state: %s, weight: %d, nice: %d, timeslice: %f, vruntime: %f\n", p->pid, p->parent == 0 ? 0 : p->parent->pid, procstatep[p->state], p->weight, p->nice, p->timeslice, p->vruntime);
 }
 
+
+								// is used in main to change the weight of curr_proc
 int
 nice_to_weight(int nice){
 	return (weight_table[20+nice]);

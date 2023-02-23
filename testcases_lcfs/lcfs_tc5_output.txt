@@ -1,0 +1,18 @@
+rjcloughley2001@shell 1> pid: 1 forked: 2
+rjcloughley2001@shell 2> curr proc- nice:-20 weight:88761
+rjcloughley2001@shell 3> 
+pid: 1, parent: 0, state: RUNNING, weight: 88761, nice: -20, timeslice: 98.859498, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 1.140502, vruntime: 0.000000
+rjcloughley2001@shell 4> LQFS selected pid: 2
+rjcloughley2001@shell 5> curr proc- nice:19 weight:15
+rjcloughley2001@shell 6> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 88761, nice: -20, timeslice: 99.983104, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNING, weight: 15, nice: 19, timeslice: 0.016896, vruntime: 5.000000
+rjcloughley2001@shell 7> LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+rjcloughley2001@shell 8> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 88761, nice: -20, timeslice: 99.983104, vruntime: 199.966207
+pid: 2, parent: 1, state: RUNNING, weight: 15, nice: 19, timeslice: 0.016896, vruntime: 141.033793
+rjcloughley2001@shell 9> 

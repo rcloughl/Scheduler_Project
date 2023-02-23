@@ -1,0 +1,14 @@
+fork
+ps
+timer 15
+ps
+fork
+timer 15
+ps
+timer 15
+ps
+quit
+
+This one tests the ordering and checks if processes added later have a time to catch up in vruntime. This
+should allow pid 1 and 2 to get a head start and then 3 should be introduced and catch up to them fairly quickly
+by being scheduled every other schedule

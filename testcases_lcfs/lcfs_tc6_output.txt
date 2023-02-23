@@ -1,0 +1,62 @@
+rjcloughley2001@shell 1> pid: 1 forked: 2
+rjcloughley2001@shell 2> 
+pid: 1, parent: 0, state: RUNNING, weight: 1024, nice: 0, timeslice: 50.000000, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 50.000000, vruntime: 0.000000
+rjcloughley2001@shell 3> LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 1
+LCFS selected pid: 2
+rjcloughley2001@shell 4> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 50.000000, vruntime: 357.000000
+pid: 2, parent: 1, state: RUNNING, weight: 1024, nice: 0, timeslice: 50.000000, vruntime: 408.000000
+rjcloughley2001@shell 5> pid: 2 forked: 3
+rjcloughley2001@shell 6> LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+rjcloughley2001@shell 7> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 494.333333
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 511.000000
+pid: 3, parent: 2, state: RUNNING, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 274.666667
+rjcloughley2001@shell 8> LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 3
+LCFS selected pid: 2
+rjcloughley2001@shell 9> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 631.666667
+pid: 2, parent: 1, state: RUNNING, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 648.333333
+pid: 3, parent: 2, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 33.333333, vruntime: 515.000000
+rjcloughley2001@shell 10> 

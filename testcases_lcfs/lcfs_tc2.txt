@@ -1,0 +1,9 @@
+nice -20
+fork
+timer 4
+ps
+quit
+
+This test case is to show that the minimum granularity(5 seconds) works
+correctly. It should call pid 2 twice and do 5 seconds each time, being 10
+seconds once the ps is called.

@@ -1,0 +1,12 @@
+fork
+nice -20
+ps
+schedule
+nice 19
+ps
+timer 4
+ps
+quit
+
+This one should still alternate between pid 1 and 2 because in our system you can't repeat the curr_proc
+through the scheduler to avoid one new function with a low vruntime from taking over for an extended period.

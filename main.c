@@ -28,8 +28,8 @@ int local_scheduler() {
     return p->pid;
 }
 
-int local_lcfs_scheduler() {
-    lcfs_scheduler();
+int local_lcfs_scheduler() {						// These are all schedulers created at the start, but
+    lcfs_scheduler();							// we ended up only using the lcfs for this version
     struct proc *p = curr_proc;
     return p->pid;
 }
@@ -151,8 +151,9 @@ int executeCmd(char** params, int nparams)
         procdump();
         break;
     case SCHEDULE:
-        pid = local_scheduler();
-        printf("Scheduler selected pid: %d\n", pid);
+        pid = local_lcfs_scheduler();						// Changed for the Linux Completely Fair
+										// Scheduler
+        printf("LQFS selected pid: %d\n", pid);
         break;
     case TIMER:
         if (nparams < 2)
@@ -161,10 +162,13 @@ int executeCmd(char** params, int nparams)
             int quantums = atoi(params[1]);
 	    if (nparams==2){
 		    for (int i = 0; i < quantums; i++) {
-			    pid = local_scheduler();
-			    printf("Round Robin selected pid: %d\n", pid);
-		    }
-	    }
+			    pid = local_lcfs_scheduler();
+			    printf("LCFS selected pid: %d\n", pid);
+		    }								// Below is code that was going to
+	    } 	 								// allow us to have both run in the same
+										// program, rather we elected for two seperate
+										// programs
+	    /*
 		    else
 			    if(atoi(params[2])==1){
 				    for (int i=0;i<quantums; i++) {
@@ -179,14 +183,16 @@ int executeCmd(char** params, int nparams)
 						    printf("MLFQ selected pid: %d\n", pid);
 					    }
 				    }
+				    */
 	    }
         break;
-    case NICE:
+    case NICE:									// Assign a nice value to curr_proc
 	if(nparams<2)
 		printf("We need a nice value!");
 	else{
 		curr_proc->nice=atoi(params[1]);
 		curr_proc->weight=nice_to_weight(curr_proc->nice);
+		timeslice_calc();
 		printf("curr proc- nice:%d weight:%d\n",curr_proc->nice,curr_proc->weight);
 	}
 	break;
