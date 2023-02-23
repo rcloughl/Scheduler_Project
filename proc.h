@@ -61,5 +61,7 @@ struct proc {
   int nice;		       // Nice values
   int tickets;		       // Tickets
   int weight;		       // Weight of the proc
+  double timeslice;	       // Timeslice of the proc
+  double vruntime;	       // Vruntimme of the proc
 };
 

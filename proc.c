@@ -17,6 +17,9 @@ void acquire(int *p) {
     return;
 }
 
+int schedule_latency=100;
+int minimum_granularity=5;
+
 static const int weight_table[40] = {
 /* -20 */ 88761, 71755, 56483, 46273, 36291,
 /* -15 */ 29154, 23254, 18705, 14949, 11916,
@@ -118,6 +121,10 @@ userinit(void)
   strcpy(p->name, "userinit"); 
   p->state = RUNNING;
   curr_proc = p;
+  p->timeslice=100;
+  p->nice=0;
+  p->weight=weight_table[p->nice+20];
+  p->vruntime=0;
   return p->pid;
 }
 
@@ -142,6 +149,7 @@ Fork(int fork_proc_id)
   np->sz = fork_proc->sz;
   np->parent = fork_proc;
   np->nice=0;
+ np->timeslice=0; 
   np->weight=weight_table[20];
   // Copy files in real code
   strcpy(np->cwd, fork_proc->cwd);
@@ -149,7 +157,7 @@ Fork(int fork_proc_id)
   pid = np->pid;
   np->state = RUNNABLE;
   strcpy(np->name, fork_proc->name);
-
+  timeslice_calc();
   return pid;
 }
 
@@ -336,27 +344,74 @@ scheduler(void)
 void
 lcfs_scheduler(void)
 {
-// A continous loop in real code
-//  if(first_sched) first_sched = 0;
-//  else sti();
-
-  curr_proc->state = RUNNABLE;
 
   struct proc *p;
-
   acquire(&ptable.lock);
+  timeslice_calc();
+  curr_proc->state = RUNNABLE; 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p == curr_proc || p->state != RUNNABLE)
+    if( p->state != RUNNABLE)
       continue;
 
     // Switch to chosen process.
     curr_proc = p;
-    p->state = RUNNING;
-    break;
   }
+  struct proc *smallest=curr_proc;
+
+   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p == smallest || p->state != RUNNABLE)
+      continue;
+
+    // Switch to chosen process.
+    curr_proc = p;
+    if (curr_proc->vruntime<smallest->vruntime){
+	    smallest=curr_proc;
+   }
+   }
+   curr_proc=smallest;
+   curr_proc->state=RUNNING;
+   double weightdiv=weight_table[20]/curr_proc->weight; 
+   curr_proc->vruntime=curr_proc->vruntime+weightdiv+curr_proc->timeslice;
+
   release(&ptable.lock);
 
 }
+
+void
+timeslice_calc(void){
+	struct proc *p;
+	struct proc *temp=curr_proc;
+	curr_proc->state=RUNNABLE;
+	double total=calc_weight_total();
+	acquire(&ptable.lock);
+
+	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+		if( p->state != RUNNABLE)
+			continue;
+
+	    // Switch to chosen process.
+	    curr_proc = p;
+	    curr_proc->timeslice=(curr_proc->weight/total)*schedule_latency;
+	  }
+	release(&ptable.lock);
+	curr_proc=temp;
+	curr_proc->state=RUNNING;
+}
+
+double
+calc_weight_total(void){
+
+	struct proc *p;
+	double total=0;
+       	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+		if(p->state == RUNNABLE){
+			total=total+p->weight;
+		}
+	return total;
+}
+
+
+
 
 void
 mlfq_scheduler(void)
@@ -390,10 +445,10 @@ void
 procdump(void)
 {
   struct proc *p;
-
+  timeslice_calc();
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->pid > 0)
-      printf("pid: %d, parent: %d, state: %s, weight: %d\n", p->pid, p->parent == 0 ? 0 : p->parent->pid, procstatep[p->state], p->weight);
+      printf("pid: %d, parent: %d, state: %s, weight: %d, nice: %d, timeslice: %f, vruntime: %f\n", p->pid, p->parent == 0 ? 0 : p->parent->pid, procstatep[p->state], p->weight, p->nice, p->timeslice, p->vruntime);
 }
 
 int
