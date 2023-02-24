@@ -1,44 +1,26 @@
 rjcloughley2001@shell 1> pid: 1 forked: 2
 rjcloughley2001@shell 2> pid: 1 forked: 3
-rjcloughley2001@shell 3> curr proc- nice:5 weight:335
-rjcloughley2001@shell 4> 
-pid: 1, parent: 0, state: RUNNING, weight: 335, nice: 5, timeslice: 14.057910, vruntime: 0.000000
-pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 42.971045, vruntime: 0.000000
-pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 42.971045, vruntime: 0.000000
-rjcloughley2001@shell 5> LQFS selected pid: 2
-rjcloughley2001@shell 6> 
-pid: 1, parent: 0, state: RUNNABLE, weight: 335, nice: 5, timeslice: 14.057910, vruntime: 0.000000
-pid: 2, parent: 1, state: RUNNING, weight: 1024, nice: 0, timeslice: 42.971045, vruntime: 43.971045
-pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 42.971045, vruntime: 0.000000
-rjcloughley2001@shell 7> curr proc- nice:-5 weight:3121
+rjcloughley2001@shell 3> rjcloughley2001@shell 4> rjcloughley2001@shell 5> 
+pid: 1, parent: 0, state: RUNNING, weight: 1024, nice: 0, timeslice: 7.478274, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNABLE, weight: 3121, nice: -5, timeslice: 22.792668, vruntime: 0.000000
+pid: 3, parent: 1, state: RUNNABLE, weight: 9548, nice: -10, timeslice: 69.729059, vruntime: 0.000000
+rjcloughley2001@shell 6> LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 3
+LCFS selected pid: 1
+LCFS selected pid: 2
+LCFS selected pid: 3
+rjcloughley2001@shell 7> 
+pid: 1, parent: 0, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 7.478274, vruntime: 37.391368
+pid: 2, parent: 1, state: RUNNABLE, weight: 3121, nice: -5, timeslice: 22.792668, vruntime: 37.391368
+pid: 3, parent: 1, state: RUNNING, weight: 9548, nice: -10, timeslice: 69.729059, vruntime: 37.391368
 rjcloughley2001@shell 8> 
-pid: 1, parent: 0, state: RUNNABLE, weight: 335, nice: 5, timeslice: 7.477679, vruntime: 0.000000
-pid: 2, parent: 1, state: RUNNING, weight: 3121, nice: -5, timeslice: 69.665179, vruntime: 43.971045
-pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 22.857143, vruntime: 0.000000
-rjcloughley2001@shell 9> LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 2
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 2
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 3
-LCFS selected pid: 1
-LCFS selected pid: 2
-rjcloughley2001@shell 10> 
-pid: 1, parent: 0, state: RUNNABLE, weight: 335, nice: 5, timeslice: 7.477679, vruntime: 115.254464
-pid: 2, parent: 1, state: RUNNING, weight: 3121, nice: -5, timeslice: 69.665179, vruntime: 252.966581
-pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 22.857143, vruntime: 190.857143
-rjcloughley2001@shell 11> 

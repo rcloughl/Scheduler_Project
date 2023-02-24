@@ -1,18 +1,63 @@
 rjcloughley2001@shell 1> pid: 1 forked: 2
-rjcloughley2001@shell 2> curr proc- nice:-20 weight:88761
-rjcloughley2001@shell 3> 
-pid: 1, parent: 0, state: RUNNING, weight: 88761, nice: -20, timeslice: 98.859498, vruntime: 0.000000
-pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 1.140502, vruntime: 0.000000
-rjcloughley2001@shell 4> LQFS selected pid: 2
-rjcloughley2001@shell 5> curr proc- nice:19 weight:15
-rjcloughley2001@shell 6> 
-pid: 1, parent: 0, state: RUNNABLE, weight: 88761, nice: -20, timeslice: 99.983104, vruntime: 0.000000
-pid: 2, parent: 1, state: RUNNING, weight: 15, nice: 19, timeslice: 0.016896, vruntime: 5.000000
-rjcloughley2001@shell 7> LCFS selected pid: 1
-LCFS selected pid: 2
-LCFS selected pid: 1
-LCFS selected pid: 2
-rjcloughley2001@shell 8> 
-pid: 1, parent: 0, state: RUNNABLE, weight: 88761, nice: -20, timeslice: 99.983104, vruntime: 199.966207
-pid: 2, parent: 1, state: RUNNING, weight: 15, nice: 19, timeslice: 0.016896, vruntime: 141.033793
-rjcloughley2001@shell 9> 
+rjcloughley2001@shell 2> pid: 1 forked: 3
+rjcloughley2001@shell 3> pid: 1 forked: 4
+rjcloughley2001@shell 4> pid: 1 forked: 5
+rjcloughley2001@shell 5> pid: 1 forked: 6
+rjcloughley2001@shell 6> pid: 1 forked: 7
+rjcloughley2001@shell 7> pid: 1 forked: 8
+rjcloughley2001@shell 8> pid: 1 forked: 9
+rjcloughley2001@shell 9> pid: 1 forked: 10
+rjcloughley2001@shell 10> pid: 1 forked: 11
+rjcloughley2001@shell 11> pid: 1 forked: 12
+rjcloughley2001@shell 12> pid: 1 forked: 13
+rjcloughley2001@shell 13> pid: 1 forked: 14
+rjcloughley2001@shell 14> pid: 1 forked: 15
+rjcloughley2001@shell 15> pid: 1 forked: 16
+rjcloughley2001@shell 16> pid: 1 forked: 17
+rjcloughley2001@shell 17> pid: 1 forked: 18
+rjcloughley2001@shell 18> pid: 1 forked: 19
+rjcloughley2001@shell 19> 
+pid: 1, parent: 0, state: RUNNING, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 4, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 5, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 6, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 7, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 8, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 9, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 10, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 11, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 12, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 13, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 14, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 15, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 16, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 17, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 18, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+pid: 19, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.263158, vruntime: 0.000000
+rjcloughley2001@shell 20> pid: 1 forked: 20
+rjcloughley2001@shell 21> pid: 1 forked: 21
+rjcloughley2001@shell 22> 
+pid: 1, parent: 0, state: RUNNING, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 2, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 3, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 4, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 5, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 6, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 7, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 8, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 9, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 10, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 11, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 12, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 13, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 14, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 15, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 16, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 17, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 18, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 19, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 20, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+pid: 21, parent: 1, state: RUNNABLE, weight: 1024, nice: 0, timeslice: 5.000000, vruntime: 0.000000
+rjcloughley2001@shell 23> 

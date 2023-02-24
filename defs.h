@@ -18,6 +18,6 @@ int             userinit(void);
 int             Wait(int);
 int             Sleep(int, int);
 void            Wakeup(int);
-int 		nice_to_weight(int);
+void 		nice_to_weight(int,int);
 double 		calc_weight_total(void);
 void 		timeslice_calc(void);

@@ -1,12 +1,25 @@
 fork
-nice -20
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
+fork
 ps
-schedule
-nice 19
-ps
-timer 4
+fork
+fork
 ps
 quit
 
-This one should still alternate between pid 1 and 2 because in our system you can't repeat the curr_proc
-through the scheduler to avoid one new function with a low vruntime from taking over for an extended period.
+this test case shows that the weights update as the fork is called

@@ -187,14 +187,11 @@ int executeCmd(char** params, int nparams)
 	    }
         break;
     case NICE:									// Assign a nice value to curr_proc
-	if(nparams<2)
-		printf("We need a nice value!");
-	else{
-		curr_proc->nice=atoi(params[1]);
-		curr_proc->weight=nice_to_weight(curr_proc->nice);
-		timeslice_calc();
-		printf("curr proc- nice:%d weight:%d\n",curr_proc->nice,curr_proc->weight);
+	if(nparams==3){
+		nice_to_weight(atoi(params[1]),atoi(params[2]));
 	}
+	else
+		printf("We need a nice value and pid!\n");
 	break;
     case HELP:
         printf("Commands: fork, wait, exit, ps, Setpid, currpid, sleep, wakeup, timer, help\n");

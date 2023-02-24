@@ -357,14 +357,14 @@ void
 lcfs_scheduler(void)
 {
 
+	curr_proc->state=RUNNABLE;
   struct proc *p;
-  struct proc *original_proc=curr_proc;
   acquire(&ptable.lock);
   struct proc *smallest;
   int empty=0;
   timeslice_calc();
    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p==original_proc ||  p->state != RUNNABLE){
+    if( p->state != RUNNABLE){
       continue;
     }
     // Switch to chosen process.
@@ -375,15 +375,12 @@ lcfs_scheduler(void)
     }
     if(curr_proc->vruntime<smallest->vruntime){
 	    smallest=curr_proc;
+    }
    }
-   }
-   original_proc->state=RUNNABLE;
    curr_proc=smallest;
    curr_proc->state=RUNNING;
-   double weightdiv=weight_table[20]/curr_proc->weight; 
-   double curr_vruntime=weightdiv+curr_proc->timeslice;
-   if (curr_vruntime<5)
-	   curr_vruntime=minimum_granularity;
+   double weightdiv=(double)weight_table[20]/(double)curr_proc->weight; 
+   double curr_vruntime=weightdiv*curr_proc->timeslice;
    curr_proc->vruntime=curr_proc->vruntime+curr_vruntime;
   release(&ptable.lock);
 
@@ -395,21 +392,20 @@ void
 timeslice_calc(void){
 	struct proc *p;
 	struct proc *temp=curr_proc;
-	curr_proc->state=RUNNABLE;
 	double total=calc_weight_total();
 	acquire(&ptable.lock);
 
 	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-		if( p->state != RUNNABLE)
+		if( p->state == UNUSED)
 			continue;
 
-	    // Switch to chosen process.
 	    curr_proc = p;
 	    curr_proc->timeslice=(curr_proc->weight/total)*schedule_latency;
+	    if (curr_proc->timeslice<5)
+		    curr_proc->timeslice=minimum_granularity;
 	  }
 	release(&ptable.lock);
 	curr_proc=temp;
-	curr_proc->state=RUNNING;
 }
 								// This function adds all of the runnable, and curr_proc, weights to
 								// one total and returns it
@@ -419,7 +415,7 @@ calc_weight_total(void){
 	struct proc *p;
 	double total=0;
        	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-		if(p->state == RUNNABLE){
+		if(p->state == RUNNABLE || p->state== RUNNING){
 			total=total+p->weight;
 		}
 	return total;
@@ -470,7 +466,18 @@ procdump(void)
 
 
 								// is used in main to change the weight of curr_proc
-int
-nice_to_weight(int nice){
-	return (weight_table[20+nice]);
+void
+nice_to_weight(int pid, int nice){
+	    struct proc *temp=curr_proc;
+                curr_proc=&ptable.proc[pid-1];
+                curr_proc->nice=nice;
+                curr_proc->weight=weight_table[nice+20];
+		curr_proc=temp; 
+		timeslice_calc();
 }
+
+
+
+
+
+

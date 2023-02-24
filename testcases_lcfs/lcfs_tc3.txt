@@ -1,11 +1,12 @@
 fork
-fork
-fork
-nice -20
+nice 1 -10
+nice 2 -5
 timer 13
 ps 
+fork
+ps
 quit
 
-This test case will show that with one really large weight that its vruntime will skyrocket
-then the scheduler will quickly call the smaller onces until it's gets back up to a similar runtime.
-Thus, it should call pid 1 then loop through 2,3,4 at the minimum for the rest.
+
+this should make the brand new forked proc have a vruntime equal to 
+the lowest current vruntime
