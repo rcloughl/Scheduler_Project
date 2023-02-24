@@ -136,7 +136,13 @@ int
 Fork(int fork_proc_id)
 {
   int pid;
-  struct proc *np, *fork_proc;
+  struct proc *np, *fork_proc, *p;
+  int smallest=curr_proc->vruntime;			//helps the new forks catch up
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    if(p->state == RUNNABLE){
+	    if(p->vruntime<smallest)
+		    smallest=p->vruntime;
+    }
 
   // Find current proc
   if ((fork_proc = findproc(fork_proc_id)) == 0)
@@ -150,11 +156,11 @@ Fork(int fork_proc_id)
   np->sz = fork_proc->sz;
   np->parent = fork_proc;
   np->nice=0;
- np->timeslice=0; 
+  np->timeslice=0; 
   np->weight=weight_table[20];
   // Copy files in real code
   strcpy(np->cwd, fork_proc->cwd);
- 
+  np->vruntime=smallest;
   pid = np->pid;
   np->state = RUNNABLE;
   strcpy(np->name, fork_proc->name);
